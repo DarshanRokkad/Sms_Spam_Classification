@@ -24,10 +24,9 @@ class DataIngestion:
     def modify_original_df(self, raw_df):
         ''' 
         1. This function will drop the unwanted 3 columns and renames remaining 2 columns.
-        2. Create 3 new columns i.e num_characters, num_words and num_sentences.
-        3. Label encoding for dependent feature i.e 'target'.
-        4. Drops the duplicate column.
-        5. Give the transformed form of the text.
+        2. Label encoding for dependent feature i.e 'target'.
+        3. Drops the duplicate column.
+        4. Give the transformed form of the text.
         '''
         try:
             logging.info('Modifiying original data started')
@@ -46,20 +45,18 @@ class DataIngestion:
             modified_df.rename(columns = renaming_columns, inplace = True)
             logging.info('Renamed v1 and v2 columns')
             
-            modified_df['num_characters'] = modified_df['text'].apply(len)
-            modified_df['num_words'] = modified_df['text'].apply(lambda x : len(nltk.word_tokenize(x)))
-            modified_df['num_sentences'] = modified_df['text'].apply(lambda x : len(nltk.sent_tokenize(x)))
-            logging.info('Created num_characters, num_words and num_sentences columns')
-            
-            encoder = LabelEncoder()
-            modified_df['target'] = encoder.fit_transform(modified_df['target'])
-            logging.info('Target columns encoded')
-            
             modified_df = modified_df.drop_duplicates(keep = 'first')
             logging.info('Droped duplicated records')
             
+            encoder = LabelEncoder()
+            modified_df['target'] = encoder.fit_transform(modified_df['target'])
+            logging.info('Target columns encoded')            
+            
             modified_df['transformed_text'] = modified_df['text'].apply(transform_text)
             logging.info('Created transformed text column')
+            
+            modified_df.drop(columns = ['text'], axis = 1, inplace = True)
+            logging.info('Deleted original text column')
             
             logging.info('Modifiying original data completed')
             return modified_df
