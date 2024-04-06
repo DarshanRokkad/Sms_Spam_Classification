@@ -7,10 +7,8 @@ from dataclasses import dataclass
 import pandas as pd
 from sklearn.model_selection import train_test_split
 from sklearn.preprocessing import LabelEncoder
+from src.utils import transform_text
 import nltk
-from nltk.corpus import stopwords
-import string
-from nltk.stem.porter import PorterStemmer
 
 @dataclass
 class DataIngestionConfig:
@@ -23,40 +21,12 @@ class DataIngestion:
     def __init__(self):
         self.dataingestion_config = DataIngestionConfig()
         
-    def transform_text(self, document:str) -> str:
-        '''
-        1. Convert given text into lower case.
-        2. Does the word tokenization.
-        3. Remove word which contains character other than alpha numeric.
-        4. Removes the stop words and punctuations from the text.
-        5. Converts each words into it basic form.
-        '''
-        try:
-            document = document.lower()
-            document = nltk.word_tokenize(document)
-            words = []
-            for word in document:
-                if word.isalnum():
-                    words.append(word)
-            not_a_stopwords = []
-            for word in words:
-                if word not in stopwords.words('english') and word not in string.punctuation:
-                    not_a_stopwords.append(word)
-            base_words = []
-            porter_stemmer = PorterStemmer()
-            for word in not_a_stopwords:
-                base_words.append(porter_stemmer.stem(word))
-            return ' '.join(base_words)
-        except Exception as e:
-            logging.info('!!! Error occured in transforming text document')
-            raise CustomException(e, sys)
-        
     def modify_original_df(self, raw_df):
         ''' 
         1. This function will drop the unwanted 3 columns and renames remaining 2 columns.
         2. Create 3 new columns i.e num_characters, num_words and num_sentences.
-        3. Drops the duplicate column.
-        4. Label encoding for dependent feature i.e 'target'.
+        3. Label encoding for dependent feature i.e 'target'.
+        4. Drops the duplicate column.
         5. Give the transformed form of the text.
         '''
         try:
@@ -88,7 +58,7 @@ class DataIngestion:
             modified_df = modified_df.drop_duplicates(keep = 'first')
             logging.info('Droped duplicated records')
             
-            modified_df['transformed_text'] = modified_df['text'].apply(self.transform_text)
+            modified_df['transformed_text'] = modified_df['text'].apply(transform_text)
             logging.info('Created transformed text column')
             
             logging.info('Modifiying original data completed')
