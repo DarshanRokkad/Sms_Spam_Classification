@@ -29,16 +29,13 @@ class PredictionPipeline:
             logging.info('Vectorizer object and model loaded succesfully')            
             
             vector_input = vectorizer.transform([transformed_text])
-            logging.info('Converted input ')
+            logging.info('Converted input text into vector')
             
-            result = model.predict(vector_input)[0]
-            logging.info('Vectorized the input text')
+            result = 'Spam' if (model.predict(vector_input)[0]) else 'Not Spam'
+            logging.info(f'Predicted output is ** {result} **')
             
             logging.info('Prediction pipeline completed')
-            if result == 1:
-                return 'Spam'
-            else:
-                return 'Not Spam'
+            return result
         except Exception as e:
             logging.info('!!! Error occured in prediction pipeline')
             raise CustomException(e, sys)
@@ -49,4 +46,4 @@ class PredictionPipeline:
 #     prediction_pipeline = PredictionPipeline()
 #     spam_text = 'SIX chances to win CASH! From 100 to 20,000 pounds txt> CSH11 and send to 87575. Cost 150p/day, 6days, 16+ TsandCs apply Reply HL 4 info'
 #     ham_text = "I'm gonna be home soon and i don't want to talk about this stuff anymore tonight, k? I've cried enough today"
-#     print(prediction_pipeline.predict(ham_text))
+#     print(prediction_pipeline.predict(spam_text))
