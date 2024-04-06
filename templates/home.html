@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Spam Detection</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+    <script>
+        history.pushState(null, null, document.URL);
+        window.addEventListener('popstate', function () {
+            history.pushState(null, null, document.URL);
+        });
+        window.onload = function() {
+            if (window.history.replaceState) {
+                window.history.replaceState(null, null, window.location.href);
+            }
+        };
+    </script>
+</head>
+
+<body>
+    <div class="container">
+        <h1>Email/SMS Spam Detection</h1>
+        <form id="textForm" action="/" method="post">
+            <textarea id="textInput" name="text" placeholder="Enter your message here"></textarea>
+            <button type="submit">Detect</button>
+        </form>
+        <div id="result">
+            {% if prediction %}
+            <h2>Prediction: {{ prediction }}</h2>
+            {% endif %}
+        </div>
+    </div>
+</body>
+
+</html>
