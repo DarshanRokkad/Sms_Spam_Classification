@@ -4,7 +4,7 @@
 
 <h3 align="center">Problem Statement</h3>
 
-Explain the problem statement
+Given a input text message/email the output will be whether the message/email is spam or not spam
 
 ---
 
@@ -30,7 +30,8 @@ Explain the problem solving approch
 
 <h3 align="center">API Testing Results</h3>
 
-<p align="center"><img src="images/api-testing-results-screenshot.png" width="700" height="400"></p>
+<p align="center"><img src="images/api_testing1.png" width="700" height="400"></p>  
+<p align="center"><img src="images/api_testing2.png" width="700" height="400"></p>
 
 ---
 
