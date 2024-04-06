@@ -9,7 +9,6 @@ from sklearn.linear_model import LogisticRegression
 from sklearn.svm import SVC
 from sklearn.naive_bayes import GaussianNB , MultinomialNB , BernoulliNB
 from sklearn.tree import DecisionTreeClassifier
-from sklearn.neighbors import KNeighborsClassifier
 from sklearn.ensemble import RandomForestClassifier
 from sklearn.ensemble import AdaBoostClassifier
 from sklearn.ensemble import BaggingClassifier
@@ -42,7 +41,6 @@ class ModelTrainer:
             logging.info('All model creation initiated')
             models = {
                 'Logistic Regression' : LogisticRegression(solver = 'liblinear', penalty ='l1'),
-                'K Neighbours Classifier' : KNeighborsClassifier(),
                 'Bernoulli Naive Bayes' : BernoulliNB(),
                 'Gaussian Naive Bayes' : GaussianNB(),
                 'Multinomial Naive Bayes' : MultinomialNB(),
@@ -58,7 +56,7 @@ class ModelTrainer:
             
             performance_df = evaluate_models(x_train, y_train, x_test, y_test, models)
             logging.info(f'\n{performance_df}\n')
-            best_model_name, precision, accuracy = performance_df['Algorithm'][0], performance_df['Precision'][0], performance_df['Accuracy'][0]
+            best_model_name, precision, accuracy = performance_df.iloc[0]['Algorithm'], performance_df.iloc[0]['Precision'], performance_df.iloc[0]['Accuracy']
             best_classifier = models[best_model_name]
             logging.info(f'Best model is {best_model_name} with precision {precision} and accuracy {accuracy}')
             
