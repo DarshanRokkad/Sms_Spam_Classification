@@ -31,7 +31,7 @@ class DataIngestion:
         4. Removes the stop words and punctuations from the text.
         5. Converts each words into it basic form.
         '''
-        try:        
+        try:
             document = document.lower()
             document = nltk.word_tokenize(document)
             words = []
