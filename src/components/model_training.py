@@ -15,7 +15,6 @@ from sklearn.ensemble import BaggingClassifier
 from sklearn.ensemble import ExtraTreesClassifier
 from sklearn.ensemble import GradientBoostingClassifier
 from xgboost import XGBClassifier
-from sklearn.metrics import accuracy_score , precision_score
 
 
 @dataclass
