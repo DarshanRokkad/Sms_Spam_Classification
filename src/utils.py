@@ -88,7 +88,8 @@ def evaluate_models(x_train, y_train, x_test, y_test, models):
                 'Precision' : precision_scores,
                 'Accuracy' : accuracy_scores 
             }
-        ).sort_values(['Precision', 'Accuracy'], ascending=[False, False])
+        )
+        performance_df.sort_values(by = ['Precision', 'Accuracy'], ascending=[False, False], inplace=True)
         
         logging.info('Model evaluation completed')
         return performance_df
