@@ -48,6 +48,6 @@ class TrainingPipeline:
 
 
 # for testing purpose 
-if __name__ == '__main__':
-    training_pipeline = TrainingPipeline()
-    training_pipeline.train_model()
+# if __name__ == '__main__':
+#     training_pipeline = TrainingPipeline()
+#     training_pipeline.train_model()
