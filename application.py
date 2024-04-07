@@ -14,7 +14,6 @@ def home_page():
         result = prediction_pipeline.predict(text)
         return render_template('home.html', prediction = result)
 
-
 # api testing
 @app.route('/predict_api', methods = ['GET', 'POST'])
 def api_testing():
@@ -25,6 +24,7 @@ def api_testing():
         prediction_pipeline = PredictionPipeline()
         result = prediction_pipeline.predict(text)
         return jsonify(result)
+
 
 if __name__ == '__main__':
     application.run()
