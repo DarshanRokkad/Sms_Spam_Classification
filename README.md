@@ -4,7 +4,7 @@
 
 <h3 align="center">Problem Statement</h3>
 
-Given a input text message/email the output will be whether the message/email is spam or not spam
+Given a input text message/email we have to detect whether it is a spam or not a spam.
 
 ---
 
@@ -37,74 +37,101 @@ Explain the problem solving approch
 
 ---
 
+<h3 align="center">Docker image publishing</h3>
+
+<p align="center">Step 1 : Built a docker image on local machine and tested the application.</p>
+<p align="center"><img src="images/docker1.png" width="700" height="400"></p>  
+<p align="center">Step 2 : Pushed tested docker image to the public docker hub.</p>
+<p align="center"><img src="images/docker2.png" width="700" height="400"></p>
+<p align="center">This docker image is present in docker hub publically anyone can just pull this image and use the project, it's open sourced.</p>
+
+---
+
+<h3 align="center">Deployment Application On AWS<br><br>(Using ECR + EC2 + Github action[CI-CD pipeline])<br></h3>  
+
+<p align="center">Step 1 : Created a IAM role and downloaded access key and secret key.</p>
+<p align="center"><img src="images/deploy1.png" width="700" height="400"></p>  
+<p align="center">Step 2 : Created a ECR private registory to store docker image privately(can also be pull image present in the docker hub).</p>
+<p align="center"><img src="images/deploy2.png" width="700" height="400"></p>  
+<p align="center">Step 3 : Created a EC2 instance to build docker and run my application.</p>
+<p align="center"><img src="images/deploy3.png" width="700" height="400"></p>  
+<p align="center">Step 4 : Configured EC2 instance by installing docker dependencies and also creating github self hosted runner.</p>
+<p align="center"><img src="images/deploy4.png" width="700" height="400"></p>  
+<p align="center">Step 5 : Can see the github self hosted runner in below image which is result of the above step.</p>
+<p align="center"><img src="images/deploy5.png" width="700" height="400"></p>  
+<p align="center">Step 6 : Added github repository secrets which are used in the github workflow.</p>
+<p align="center"><img src="images/deploy6.png" width="700" height="400"></p>  
+<p align="center">Step 7 : Can see successfully runned CI-CD pipeline in below image.</p>
+<p align="center"><img src="images/deploy7.png" width="700" height="400"></p>  
+<p align="center">Step 8 : Accessed spam detection application using public IPv4 address.</p>
+<p align="center"><img src="images/deploy8.png" width="700" height="400"></p>   
+
+---
+
 <h3 align="center">Project Structure</h3>
 
 ```
 │  
-├── artificats                               <-- Contains dataset(train, test and raw) and pickle files(preprocessor and model)
+├── .github/workflow/main.yaml               <-- For Continous Integration, Continous Delivery and Contious Deployment.
 │  
-├── images                                   <-- contains images used in readme file
+├── artificats                               <-- Contains dataset(train, test , modified and raw) and pickle files(vectorizer and model).
 │  
-├── notebooks
-│   │
-│   └── experiment.ipynb                     <-- a jupyter notebook where eda and model training is performed
+├── images                                   <-- Contains images used in readme file.
 │  
-├── resources                                <-- folder contains some usefull commands and steps used while build project 
+├── notebooks                                <-- Folder contains a jupyter notebook where eda and model training is performed.
+│  
+├── resources                                <-- Folder contains some usefull commands and steps used while build project.
 │   
 ├── src
 │   │
 │   ├── components
 │   │   │
-│   │   ├── data_ingestion.py             <-- module which reads data from different data source and do train test split
-│   │   │                                        then save raw data, train data and test data inside artifact folder 
+│   │   ├── __init__.py
 │   │   │
-│   │   ├── data_transformation.py        <-- module which takes training and test dataset and then do feature engineering
-│   │   │                                        then save preprocessor as pickle file inside artifact folder 
+│   │   ├── data_ingestion.py                <-- First component of training pipeline which reads data from source and does train test split. 
 │   │   │
-│   │   ├── model_training.py             <-- module which takes preprocessed training and test data and 
-│   │   │                                        this data is used to train different models and selects best model 
-│   │   │                                        it also perform hyperparameter tuning 
+│   │   ├── data_transformation.py           <-- Second component of training pipeline which takes train and test data and transform them into data which can be used to train model.
 │   │   │
+│   │   ├── model_training.py                <-- Third component of training pipeline which will use different machine learning algorithm
+│   │   │                                        and train algorithms with transformed data and select best model and save that model of prediction
 │   │   │
-│   │   └── model_evaluation.py           <-- module which calculate the performance metrics
+│   │   └── model_evaluation.py              <-- Fourth component of training pipeline which is used to evaluate the best model and save the performance metrics.
 │   │
 │   ├── pipeline
 │   │   │
 │   │   ├── __init__.py
 │   │   │
-│   │   ├── training_pipeline.py          <-- module used to train the model using training components
+│   │   ├── training_pipeline.py             <-- This pipeline is used to train model by combining all the components present in the components folder.
 │   │   │
-│   │   └── prediction_pipeline.py        <-- module takes the input data given by user through flask web application and returns the prediction
+│   │   └── prediction_pipeline.py           <-- This pipeline uses the vectorizer and model which are obtained after training and does prediction and returns the prediction to application.  
 │   │
 │   ├── __init__.py
 │   │
-│   ├── exception.py                         <-- module to display the custom exception
+│   ├── exception.py                         <-- Exception module is contains a class which can be used to raise custom exceptions.
 │   │
-│   ├── logger.py                            <-- module to create log folder for each execution and log the events whenever required.
+│   ├── logger.py                            <-- Logger module is used for logging and dugging which can be used to log various information.
 │   │
-│   └── utils.py                             <-- module to which contians functions that are commonly used.
+│   └── utils.py                             <-- Utils module contains the commonly used methods in the project.
 │   
 ├── static
 │   │
-│   └── css                                  <-- contains all css files
+│   └── css                                  <-- Folder contains all css files.
 │   
-├── templates                                <-- contains all html files
+├── templates                                <-- Folder contains all the html files.
 │   
-├── .gitignore                               <-- used to ignore the unwanted file and folders
+├── .gitignore                               <-- Used to ignore the file which are not needed to push to github.
 │
-├── application.py                           <-- flask web application to take input from user and render output
+├── application.py                           <-- Contains flask web application to take input from user and render output.
 │
-├── init_setup.sh                            <-- file is likely a shell script used to initailize the setup
+├── LICENSE                                  <-- Copyright license for the github repository.
 │
-├── LICENSE                                  <-- copyright license for the github repository 
+├── README.md                                <-- Used to display the information about the project.
 │
-├── README.md                                <-- used to display the information about the project
+├── requirements.txt                         <-- Text file which contain the dependencies/packages used in project. 
 │
-├── requirements.txt                         <-- text file which contain the dependencies/packages used in project 
+├── setup.py                                 <-- Python script used for building python package of our project.
 │
-├── setup.py                                 <-- python script used for building python packages of the project
-│
-└── template.py                              <-- program used to create the project structure
+└── template.py                              <-- Program used to create our the project structure.
 ```
 
 ---
