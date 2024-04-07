@@ -1,12 +1,13 @@
 import os
 import sys
-import pandas as pd
 
 from src.exception import CustomException
 from src.logger import logging
 from src.utils import load_obj, transform_text
 from dataclasses import dataclass
-
+import nltk
+nltk.download('punkt')
+nltk.download('stopwords')
 
 @dataclass
 class PredictPipelineConfig:
