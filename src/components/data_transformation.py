@@ -30,16 +30,16 @@ class DataTransformation:
             logging.info('Separating independent and dependent feature')
             Y = 'target'
             X_train_df = train_df.drop(columns = [Y], axis = 1)
-            Y_train_df = np.array(train_df[Y])
+            Y_train_arr = np.array(train_df[Y])
             X_test_df = test_df.drop(columns = [Y], axis = 1)
-            Y_test_df = np.array(test_df[Y])
+            Y_test_arr = np.array(test_df[Y])
             
             logging.info('Data preprocessing initiated')
             vectorizer = TfidfVectorizer(max_features=3000)
             X_train_arr = vectorizer.fit_transform(X_train_df['transformed_text']).toarray()
             X_test_arr = vectorizer.transform(X_test_df['transformed_text']).toarray()
-            train_arr = np.c_[X_train_arr, Y_train_df]
-            test_arr = np.c_[X_test_arr, Y_test_df]
+            train_arr = np.c_[X_train_arr, Y_train_arr]
+            test_arr = np.c_[X_test_arr, Y_test_arr]
             
             logging.info('Saving vectorizer object')
             save_obj(
