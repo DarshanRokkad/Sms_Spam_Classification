@@ -50,21 +50,21 @@ Explain the problem solving approch
 <h3 align="center">Deployment Application On AWS<br><br>(Using ECR + EC2 + Github action[CI-CD pipeline])<br></h3>  
 
 <p align="center">Step 1 : Created a IAM role and downloaded access key and secret key.</p>
-<p align="center"><img src="images/deploy1.png" width="700" height="400"></p>  
+<p align="center"><img src="images/deploy1.png" width="700" height="375"></p>  
 <p align="center">Step 2 : Created a ECR private registory to store docker image privately(can also be pull image present in the docker hub).</p>
-<p align="center"><img src="images/deploy2.png" width="700" height="400"></p>  
+<p align="center"><img src="images/deploy2.png" width="700" height="375"></p>  
 <p align="center">Step 3 : Created a EC2 instance to build docker and run my application.</p>
-<p align="center"><img src="images/deploy3.png" width="700" height="400"></p>  
+<p align="center"><img src="images/deploy3.png" width="700" height="375"></p>  
 <p align="center">Step 4 : Configured EC2 instance by installing docker dependencies and also creating github self hosted runner.</p>
-<p align="center"><img src="images/deploy4.png" width="700" height="400"></p>  
+<p align="center"><img src="images/deploy4.png" width="700" height="375"></p>  
 <p align="center">Step 5 : Can see the github self hosted runner in below image which is result of the above step.</p>
-<p align="center"><img src="images/deploy5.png" width="700" height="400"></p>  
+<p align="center"><img src="images/deploy5.png" width="700" height="375"></p>  
 <p align="center">Step 6 : Added github repository secrets which are used in the github workflow.</p>
-<p align="center"><img src="images/deploy6.png" width="700" height="400"></p>  
+<p align="center"><img src="images/deploy6.png" width="700" height="375"></p>  
 <p align="center">Step 7 : Can see successfully runned CI-CD pipeline in below image.</p>
-<p align="center"><img src="images/deploy7.png" width="700" height="400"></p>  
+<p align="center"><img src="images/deploy7.png" width="700" height="375"></p>  
 <p align="center">Step 8 : Accessed spam detection application using public IPv4 address.</p>
-<p align="center"><img src="images/deploy8.png" width="700" height="400"></p>   
+<p align="center"><img src="images/deploy8.png" width="700" height="375"></p>   
 
 ---
 
