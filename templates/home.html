@@ -28,7 +28,11 @@
         </form>
         <div id="result">
             {% if prediction %}
-            <h2>Prediction: {{ prediction }}</h2>
+                {% if prediction == 'Spam' %}
+                    <h2 class="spam">Prediction: {{ prediction }}</h2>
+                {% else %}
+                    <h2 class="notspam">Prediction: {{ prediction }}</h2>
+                {% endif %}
             {% endif %}
         </div>
     </div>
