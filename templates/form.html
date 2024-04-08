@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Spam Detection</title>
+    <script>
+        window.onload = function () {
+            if (window.performance) {
+                if (window.performance.navigation.type === 1) {
+                    clearForm();
+                }
+            }
+        };
+        function clearForm() {
+            var form = document.getElementById('textForm');
+            form.reset();
+        }
+        function toggleSubmitButton() {
+            var textInput = document.getElementById('textInput');
+            var submitButton = document.getElementById('submitButton');
+
+            if (textInput.value.trim() !== '') {
+                submitButton.disabled = false;
+            } else {
+                submitButton.disabled = true;
+            }
+        }
+    </script>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+
+<body>
+    <div class="container">
+        <h1>Email/SMS Spam Detection</h1>
+        <form id="textForm" action="/detect" method="POST">
+            <textarea id="textInput" name="text" placeholder="Enter your message here" oninput="toggleSubmitButton()"></textarea>
+            <button id="submitButton" type="submit" disabled>Detect</button>
+        </form>
+    </div>
+</body>
+
+</html>

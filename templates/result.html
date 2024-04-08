@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Spam Detection</title>
+    <script>
+        // JavaScript code to redirect to form.html only on manual reload
+        window.onload = function () {
+            if (window.performance) {
+                if (window.performance.navigation.type === 1) {
+                    window.location.href = '/detect';
+                }
+            }
+        };
+    </script>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+
+<body>
+    <div class="container">
+        {% if prediction %}
+        {% if prediction == 'Spam' %}
+        <h3><span class="spam">{{ prediction }} Message</span><br>(Be alert)</h3>
+        {% else %}
+        <h3><span class="notspam">{{ prediction }} a Message</span><br>(So chill)</h3>
+        {% endif %}
+        {% endif %}
+    </div>
+</body>
+
+</html>
