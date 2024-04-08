@@ -49,7 +49,7 @@ Explain the problem solving approch
 
 ---
 
-<h3 align="center">Deployment Application On AWS<br><br>(Using ECR + EC2 + Github action[CI-CD pipeline])<br></h3>  
+<h3 align="center">Deployment Application On AWS<br><br>Using ECR + EC2 + Github action[CI-CD pipeline]<br></h3>  
 
 <p align="center">Step 1 : Created a IAM role and downloaded access key and secret key.</p>
 <p align="center"><img src="images/deploy1.png" width="700" height="375"></p>  
