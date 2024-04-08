@@ -1,21 +1,26 @@
 from flask import Flask, render_template, request, jsonify
 from src.pipeline.prediction_pipeline import PredictionPipeline
 
+
 application = Flask(__name__)
 app = application
 
-@app.route('/', methods = ['GET', 'POST'])
+@app.route('/')
 def home_page():
+    return render_template('home.html')
+    
+@app.route('/detect', methods = ['GET', 'POST'])
+def form_page():
     if request.method == 'GET':
-        return render_template('home.html')
+        return render_template('form.html')
     else:
         text = request.form['text']
         prediction_pipeline = PredictionPipeline()
         result = prediction_pipeline.predict(text)
-        return render_template('home.html', prediction = result)
+        return render_template('result.html', prediction = result)
 
 # api testing
-@app.route('/predict_api', methods = ['GET', 'POST'])
+@app.route('/detect_api', methods = ['GET', 'POST'])
 def api_testing():
     if request.method == 'GET':
         return 'Nothing'
