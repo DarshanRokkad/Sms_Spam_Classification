@@ -27,6 +27,8 @@ Explain the problem solving approch
 <p align="center"><img src="images/ui1.png" width="700" height="400"></p>
 <p align="center"><img src="images/ui2.png" width="700" height="400"></p>
 <p align="center"><img src="images/ui3.png" width="700" height="400"></p>
+<p align="center"><img src="images/ui4.png" width="700" height="400"></p>
+<p align="center"><img src="images/ui5.png" width="700" height="400"></p>
 
 ---
 
