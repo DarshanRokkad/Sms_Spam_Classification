@@ -46,6 +46,7 @@ Explain the problem solving approch
 <p align="center">Step 2 : Pushed tested docker image to the public docker hub.</p>
 <p align="center"><img src="images/docker2.png" width="700" height="400"></p>
 <p align="center">This docker image is present in docker hub publically anyone can just pull this image and use the project, it's open sourced.</p>
+<p align="center">The command to run the pulled docker image is "docker run -p 5000:5000 darshanrm/spam_detection_app:latest"</p>
 
 ---
 
