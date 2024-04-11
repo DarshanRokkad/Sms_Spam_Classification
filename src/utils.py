@@ -10,6 +10,8 @@ import string
 from nltk.corpus import stopwords
 from nltk.stem.porter import PorterStemmer
 from sklearn.metrics import accuracy_score, precision_score
+import mlflow
+import mlflow.sklearn
 
 
 def save_obj(file_path:str, obj) -> None:
@@ -72,12 +74,17 @@ def evaluate_models(x_train, y_train, x_test, y_test, models):
         accuracy_scores = []
         for model_name in models:
             logging.info(f'{model_name} training started')
-            classifier = models[model_name]
-            classifier.fit(x_train, y_train)
-            logging.info(f'{model_name} training completed')
-            prediction = classifier.predict(x_test)
-            precision = precision_score(y_test , prediction)
-            accuracy = accuracy_score(y_test, prediction)
+            
+            with mlflow.start_run(run_name = f'{model_name}'):
+                classifier = models[model_name]
+                classifier.fit(x_train, y_train)
+                logging.info(f'{model_name} training completed')
+                prediction = classifier.predict(x_test)
+                precision = precision_score(y_test , prediction)
+                accuracy = accuracy_score(y_test, prediction)
+                mlflow.log_metric('Precision', precision)
+                mlflow.log_metric('Accuracy', accuracy)
+            
             precision_scores.append(precision)
             accuracy_scores.append(accuracy)
             logging.info(f'\nFor {model_name}\nPrecision = {precision}\nAccuracy = {accuracy}\n')
