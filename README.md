@@ -46,6 +46,9 @@ Explain the problem solving approch
 <p align="center">Mlflow is used to mointer my Machine Learning Lifecycle and dags hub is a remote repository.</p>
 <p align="center"><img src="images/mlflow1.png" width="700" height="400"></p>  
 <p align="center"><img src="images/mlflow2.png" width="700" height="400"></p>
+<p align="center"><img src="images/mlflow3.png" width="700" height="400"></p>
+<p align="center"><img src="images/mlflow4.png" width="700" height="400"></p>
+<p align="center"><img src="images/mlflow5.png" width="700" height="400"></p>
 
 ---
 
