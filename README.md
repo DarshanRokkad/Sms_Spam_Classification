@@ -1,4 +1,4 @@
-<h1 align="center">:rocket: SMS/Email Spam Classification Project :rocket:</h1>
+<h1 align="center">:email: SMS/Email Spam :bust_in_silhouette: Classification Project :bangbang:</h1>
 
 ---
 
@@ -14,7 +14,7 @@ Research Paper -> https://ieeexplore.ieee.org/document/10390514
 
 Click the below image to see vedio solution explaination 
 
-[![YouTube Video](images\project_demo.png)](https://www.youtube.com/embed/______)
+[![YouTube Video](images\project_demo.png)](https://www.youtube.com)
 
 ---
 
