@@ -14,7 +14,7 @@ Research Paper -> https://ieeexplore.ieee.org/document/10390514
 
 Click the below image to see vedio solution explaination 
 
-[![YouTube Video](images/youtube-tumbnail.png)](https://www.youtube.com/embed/______)
+[![YouTube Video](images\project_demo.png)](https://www.youtube.com/embed/______)
 
 ---
 
