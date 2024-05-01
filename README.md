@@ -10,7 +10,7 @@ Given a input text message/email we have to detect whether it is a spam or not a
 
 <h3 align="center">Solution Explaination</h3>
 
-Research Paper -> https://ieeexplore.ieee.org/document/10390514
+**Research Paper** -> https://ieeexplore.ieee.org/document/10390514
 
 Click the below image to see vedio solution explaination 
 
@@ -20,7 +20,18 @@ Click the below image to see vedio solution explaination
 
 <h3 align="center">Approch for the problem</h3>
 
-Explain the problem solving approch
+**Steps:**
+1. Downloading data and loading into jupyter notebook. 
+2. Perfoming exploratory data analysis and feature engineering in jupyter notebook.
+3. Performing model building in jupyer notebook using different machine learning algorithm.
+4. Converting entire jupyter notebook experiments into modular coding with expection handling and logging.
+5. Then using training pipeline to probably train the model.
+6. Ingeration of mlflow and dags hub for monitering of nlp lifecycle and logging results. 
+7. Building of prediction pipeline and falsk api to serve model.
+8. Testing api using Postman.
+9. Building ui using HTML and CSS for flask api.
+10. Then dockering the application and testing in local environment.
+11. Deploying complete working model on AWS cloud platform using CICD with github actions.
 
 ---
 
