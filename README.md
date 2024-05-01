@@ -14,7 +14,7 @@ Research Paper -> https://ieeexplore.ieee.org/document/10390514
 
 Click the below image to see vedio solution explaination 
 
-[![YouTube Video](images\project_demo.png)](https://www.youtube.com)
+[![YouTube Video](images\project_demo.png)](https://www.linkedin.com/posts/darshan-r-m_nlp-mlops-datascience-activity-7188967440779751424-7vJn?utm_source=share&utm_medium=member_desktop)
 
 ---
 
